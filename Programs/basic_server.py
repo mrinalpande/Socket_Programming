@@ -1,19 +1,16 @@
-#!/usr/bin/python        
+#!/usr/bin/python           
+# This is server.py file
 
-import socket             
+import socket               # Import socket module
 
-s = socket.socket()        
-host = socket.gethostname() 
-port = 12345               
-s.bind((host, port))    
+s = socket.socket()         # Create a socket object
+host = socket.gethostname() # Get local machine name
+port = 12344                # Reserve a port for your service.
+s.bind((host, port))        # Bind to the port
 
-msgs = "Hello"
-s.listen(5)             
-c, addr = s.accept()
-while msgs!="end":
-   
-   print c.recv(1024)
-   msgs=input("Messege for client")
-   c.send(msgs)
-  
-c.close()            
+s.listen(5)                 # Now wait for client connection.
+
+c, addr = s.accept()     # Establish connection with client.
+print 'Got connection from', addr
+c.send('Thank you for connecting')
+c.close()                # Close the connection
